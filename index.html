@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 42rem;
+        }
+
+        form {
+            background-color: pink;
+            font-size: 2.2rem;
+            padding: 20px 56px;
+            border-radius: 30px;
+        }
+
+        .con {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .con input {
+            font-size: 1.5rem;
+            width: 306px;
+        }
+
+        .con select {
+            margin: 34px;
+            font-size: 1.5rem;
+
+        }
+
+        .btn {
+            display: block;
+            margin: auto;
+            padding: 10px 24px;
+            background-color: yellow;
+            border: 3px solid yellow;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="tempCalc" onsubmit="calculatetemp();return false">
+        <label for="temp">Please enter the temperature you'd like to covert</label>
+        <br>
+        <div class="con">
+            <input type="number" id="temp" placeholder="Enter the number of tem..">
+            <select name="temp_diff" id="temp_diff">
+                <option value="cel">°Celsius</option>
+                <option value="fah">°Fahrenheit</option>
+            </select><br>
+        </div>
+        <input class="btn" type="submit" name="temp"><br>
+        <span id="resultContainer"></span>
+    </form>
+    <script>
+        const calculatetemp = () => {
+            const numbertemp = document.getElementById('temp').value;
+            const valuetemp = document.getElementById('temp_diff').value;
+            const celtofah = (cel) => {
+                let fah = Math.round((cel * 9 / 5) + 32)
+                return fah;
+            }
+            const fahtocel = (fahr) => {
+                let cel = Math.round((fahr - 32) * 5 / 9)
+                return cel;
+            }
+            let result;
+            if (valuetemp == 'cel') {
+                result = celtofah(numbertemp)
+                document.getElementById('resultContainer').innerHTML = `=${result}°Fahrenheit`
+            }
+            if (valuetemp == 'fah') {
+                result = fahtocel(numbertemp)
+                document.getElementById('resultContainer').innerHTML = `=${result}°Celsius`
+            }
+        }
+    </script>
+</body>
+
+</html>
